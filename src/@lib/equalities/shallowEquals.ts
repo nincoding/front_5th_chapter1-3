@@ -1,7 +1,4 @@
-export function shallowEquals<T extends Record<string, unknown>>(
-  objA: T,
-  objB: T,
-): boolean {
+export function shallowEquals<T>(objA: T, objB: T): boolean {
   if (objA === objB) return true;
 
   if (!objA || !objB || typeof objA !== "object" || typeof objB !== "object") {
@@ -27,5 +24,7 @@ export function shallowEquals<T extends Record<string, unknown>>(
 
   if (keysA.length !== keysB.length) return false;
 
-  return keysA.every((key) => Object.is(objA[key], objB[key]));
+  return keysA.every((key) =>
+    Object.is(objA[key as keyof T], objB[key as keyof T]),
+  );
 }
