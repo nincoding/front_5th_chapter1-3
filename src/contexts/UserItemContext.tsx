@@ -1,10 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { createContext, useState, useContext } from "react";
+import { useMemo, useCallback } from "../@lib";
 import { generateItems } from "../utils";
 import { Item } from "../types";
 
@@ -27,12 +22,15 @@ export const UserItemProvider: React.FC<{ children: React.ReactNode }> = ({
       ...prevItems,
       ...generateItems(1000, prevItems.length),
     ]);
-  }, []);
+  }, [setItems]);
 
-  const value = useMemo(() => ({ items, addItems }), [items, addItems]);
+  const userItemContextValue = useMemo(
+    () => ({ items, addItems }),
+    [items, addItems],
+  );
 
   return (
-    <UserItemContext.Provider value={value}>
+    <UserItemContext.Provider value={userItemContextValue}>
       {children}
     </UserItemContext.Provider>
   );
