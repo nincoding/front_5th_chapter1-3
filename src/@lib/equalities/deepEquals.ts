@@ -25,12 +25,10 @@ export function deepEquals<T>(objA: T, objB: T): boolean {
 
   if (keysA.length !== keysB.length) return false;
 
-  return keysA.every(
-    (key) =>
-      Object.prototype.hasOwnProperty.call(objB, key) &&
-      deepEquals(
-        (objA as Record<string, unknown>)[key],
-        (objB as Record<string, unknown>)[key],
-      ),
+  return keysA.every((key) =>
+    deepEquals(
+      (objA as Record<string, unknown>)[key],
+      (objB as Record<string, unknown>)[key],
+    ),
   );
 }
