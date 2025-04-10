@@ -1,12 +1,6 @@
-import React, { createContext, useState, useContext } from "react";
-import { useMemo, useCallback } from "../@lib";
-
-interface ThemeContextType {
-  theme: string;
-  toggleTheme: () => void;
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+import { useState } from "react";
+import { useMemo, useCallback } from "../../@lib";
+import { ThemeContext } from "./index";
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -27,12 +21,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </ThemeContext.Provider>
   );
-};
-
-export const useThemeContext = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useThemeContext must be used within a ThemeProvider");
-  }
-  return context;
 };

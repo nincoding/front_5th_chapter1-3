@@ -1,15 +1,8 @@
-import React, { createContext, useState, useContext } from "react";
-import { useMemo, useCallback } from "../@lib";
-import { useNotificationContext } from "./NotificationContext";
-import { User } from "../types";
-
-interface UserContextType {
-  user: User | null;
-  login: (email: string) => void;
-  logout: () => void;
-}
-
-const UserContext = createContext<UserContextType | undefined>(undefined);
+import { useState } from "react";
+import { useMemo, useCallback } from "../../@lib";
+import { useNotificationContext } from "../NotificationContext";
+import { User } from "../../types";
+import { UserContext } from "./index";
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -40,12 +33,4 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </UserContext.Provider>
   );
-};
-
-export const useUserContext = () => {
-  const context = useContext(UserContext);
-  if (context === undefined) {
-    throw new Error("useUserContext must be used within a UserProvider");
-  }
-  return context;
 };
