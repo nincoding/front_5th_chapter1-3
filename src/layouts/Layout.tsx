@@ -1,5 +1,3 @@
-// ! 5: 체크 완료
-
 import { memo } from "../@lib";
 import { useThemeContext } from "../contexts";
 import { Header } from "../components/Header";
