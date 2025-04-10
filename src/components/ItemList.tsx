@@ -1,15 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { renderLog } from "../utils";
-import { useThemeContext } from "../contexts";
-import { Item } from "../types";
+import { useThemeContext, useUserItemContext } from "../contexts";
 
-export const ItemList: React.FC<{
-  items: Item[];
-  onAddItemsClick: () => void;
-}> = ({ items, onAddItemsClick }) => {
+export const ItemList: React.FC = React.memo(() => {
   renderLog("ItemList rendered");
   const [filter, setFilter] = useState("");
   const { theme } = useThemeContext();
+  const { items, addItems } = useUserItemContext();
 
   const filteredItems = items.filter(
     (item) =>
@@ -29,7 +26,7 @@ export const ItemList: React.FC<{
           <button
             type="button"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs"
-            onClick={onAddItemsClick}
+            onClick={addItems}
           >
             대량추가
           </button>
@@ -59,4 +56,4 @@ export const ItemList: React.FC<{
       </ul>
     </div>
   );
-};
+});
