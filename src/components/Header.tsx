@@ -1,7 +1,8 @@
+import { memo } from "../@lib";
 import { renderLog } from "../utils";
 import { useThemeContext, useUserContext } from "../contexts";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
   renderLog("Header rendered");
   const { theme, toggleTheme } = useThemeContext();
   const { user, login, logout } = useUserContext();
@@ -44,4 +45,4 @@ export const Header: React.FC = () => {
       </div>
     </header>
   );
-};
+});

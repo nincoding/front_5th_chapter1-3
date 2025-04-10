@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { memo } from "../@lib";
 import { renderLog } from "../utils";
 import { useThemeContext, useUserItemContext } from "../contexts";
 
-export const ItemList: React.FC = React.memo(() => {
+export const ItemList: React.FC = memo(() => {
   renderLog("ItemList rendered");
   const [filter, setFilter] = useState("");
   const { theme } = useThemeContext();
