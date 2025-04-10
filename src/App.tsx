@@ -1,9 +1,5 @@
-import {
-  Header,
-  ItemList,
-  ComplexForm,
-  NotificationSystem,
-} from "./components";
+import { ItemList, ComplexForm } from "./components";
+import { Layout } from "./layouts";
 import {
   ThemeProvider,
   UserProvider,
@@ -15,11 +11,10 @@ import {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <UserProvider>
-        <NotificationProvider>
+      <NotificationProvider>
+        <UserProvider>
           <UserItemProvider>
-            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white">
-              <Header />
+            <Layout>
               <div className="container mx-auto px-4 py-8">
                 <div className="flex flex-col md:flex-row">
                   <div className="w-full md:w-1/2 md:pr-4">
@@ -30,11 +25,10 @@ const App: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <NotificationSystem />
-            </div>
+            </Layout>
           </UserItemProvider>
-        </NotificationProvider>
-      </UserProvider>
+        </UserProvider>
+      </NotificationProvider>
     </ThemeProvider>
   );
 };
